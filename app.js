@@ -37,15 +37,23 @@ app.get('/api/restaurants/:id', (req, res)=>{
 });
 
 app.get('/api/restaurants', (req, res)=>{
-    db.getAllRestaurants(req.query.page, req.query.perPage, req.query.borough).then((result)=>{
-        res.send(result);
-    });
+
+        db.getAllRestaurants(req.query.page, req.query.perPage, req.query.borough).then((result)=>{
+            res.send(result);
+        }).catch((error)=>{
+            //error handler 
+            console.log(error);
+            res.send(error);
+        });
+
 });
 
 app.put('/api/restaurants/:id', (req, res)=>{
     if(ObjectID.isValid(req.params.id)){
         db.updateRestaurantById(req.body, req.params.id).then((result)=>{
             res.send(result);
+        }).catch((error)=>{
+            res.send('Error!');
         });
     }else{
         res.send('Your object ID is incorrect.')
@@ -56,16 +64,22 @@ app.delete('/api/restaurants/:id', (req, res)=>{
     if(ObjectID.isValid(req.params.id)){
         db.deleteRestaurantById(req.params.id).then((result)=>{
             res.send(result);
+        }).catch((error)=>{
+            res.send('Error!');
         });
     }else{
         res.send('Your object ID is incorrect.')
     }
 });
 
-db.initialize('mongodb+srv://web422.dz03t.mongodb.net/sample_restaurants?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority', credentials).then(()=>{
+try{
+    db.initialize('mongodb+srv://web422.dz03t.mongodb.net/sample_restaurants?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority', credentials).then(()=>{
     app.listen(HTTP_PORT, ()=>{
     console.log(`server listening on: ${HTTP_PORT}`);
     });   
     }).catch((err)=>{
     console.log(err);
     });
+}finally{
+    mongoose.disconnect();
+}
