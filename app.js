@@ -14,7 +14,7 @@ const db = new RestaurantDB();
 //security certificate
 const credentials = './X509-cert-4082462911005145335.pem'
 //port #
-const HTTP_PORT = 5050;
+const HTTP_PORT = process.env.PORT || 5050;
 
 app.use(cors());
 app.use(express.json());
