@@ -18,7 +18,7 @@ const HTTP_PORT = 5050;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'))
+app.use(express.static('views'))
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes
