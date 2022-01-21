@@ -79,14 +79,11 @@ app.get('/', (req, res)=>{
 });
 
 
-try{
-    db.initialize('mongodb+srv://web422.dz03t.mongodb.net/sample_restaurants?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority', credentials).then(()=>{
-    app.listen(HTTP_PORT, ()=>{
-    console.log(`server listening on: ${HTTP_PORT}`);
-    });   
-    }).catch((err)=>{
-    console.log(err);
-    });
-}finally{
-    mongoose.disconnect();
-}
+db.initialize('mongodb+srv://web422.dz03t.mongodb.net/sample_restaurants?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority', credentials).then(()=>{
+app.listen(HTTP_PORT, ()=>{
+console.log(`server listening on: ${HTTP_PORT}`);
+});   
+}).catch((err)=>{
+console.log(err);
+});
+
