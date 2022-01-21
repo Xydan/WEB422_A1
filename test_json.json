@@ -1,0 +1,17 @@
+{
+    "address": {
+        "building": "Wellesley",
+        "coord": 100,
+        "street": "Wellington",
+        "zipcode": "M4T1Y6"
+    },
+    "borough": "Worthington",
+    "cuisine": "British",
+    "grades": [{
+        "date": 20211201,
+        "grade": "B",
+        "score": 5
+    }],
+    "name": "Great British Cuisine",
+    "restaurant_id": "555AAA"
+}
