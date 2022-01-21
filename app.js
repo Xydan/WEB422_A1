@@ -10,8 +10,7 @@ const ObjectId = require('mongodb').ObjectID;
 const RestaurantDB = require("./modules/restaurantDB.js");
 const { ObjectID } = require('bson');
 const db = new RestaurantDB();
-//index page
-const index = require("./views/index.html");
+
 //security certificate
 const credentials = './X509-cert-4082462911005145335.pem'
 //port #
@@ -22,10 +21,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes
-app.get('/', (req, res)=>{
-    res.sendFile(index);
-});
-
 app.post('/api/restaurants', (req, res)=>{
     db.addNewRestaurant(req.body).then((result)=>{
         res.send(result);
@@ -77,6 +72,11 @@ app.delete('/api/restaurants/:id', (req, res)=>{
         res.send('Your object ID is incorrect.')
     }
 });
+
+app.get('/', (req, res)=>{
+    res.sendFile('views/index.html', {root: __dirname});
+});
+
 
 try{
     db.initialize('mongodb+srv://web422.dz03t.mongodb.net/sample_restaurants?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority', credentials).then(()=>{
