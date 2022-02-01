@@ -1,3 +1,14 @@
+/*********************************************************************************
+* WEB422 – Assignment 1
+* I declare that this assignment is my own work in accordance with Seneca Academic Policy.
+* No part of this assignment has been copied manually or electronically from any other source
+* (including web sites) or distributed to other students.
+*
+* Name: Andy Li   Student ID: 140820192   Date: Jan 20 2021
+* Heroku Link: https://web422a1-ali.herokuapp.com/
+*
+********************************************************************************/ 
+
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
@@ -18,7 +29,7 @@ const HTTP_PORT = process.env.PORT || 5050;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('views'))
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes
